@@ -38,7 +38,7 @@ class TestFairyUploadTask extends DefaultTask {
 
 		// use outputFile from packageApp task
 		String apkFilename = null
-		applicationVariants.all { variant ->
+		android.applicationVariants.all { variant ->
     			variant.outputs.all {
         			String filename = "${variant.name}-${variant.versionName}.apk"
 				if (filename.endsWith(".apk")) {
