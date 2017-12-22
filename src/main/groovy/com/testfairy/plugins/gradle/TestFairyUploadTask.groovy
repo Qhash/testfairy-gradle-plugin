@@ -38,13 +38,13 @@ class TestFairyUploadTask extends DefaultTask {
 
 		// use outputFile from packageApp task
 		String apkFilename = null
-		applicationVariant.outputs.each {
-			if (it.outputFile.exists()) {
-				String filename = it.outputFile.toString()
+		android.applicationVariants.all { variant ->
+    			variant.outputs.all {
+        			String filename = "${variant.name}-${variant.versionName}.apk"
 				if (filename.endsWith(".apk")) {
 					apkFilename = filename
 				}
-			}
+    			}
 		}
 
 		project.logger.info("Uploading ${apkFilename} to TestFairy on server ${serverEndpoint}")
